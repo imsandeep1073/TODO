@@ -11,15 +11,26 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 </head>
+<style>
+    .task li {
+        color: white;
+    }
+</style>
 
 <body class="bg-dark">
 
     <div class="container">
-        <div class="row">
-            <div class="col-6 d-flex justify-content-center align-items-center">
-                <div>
-                    <input type="text" id="addTodo">
-                    <button class="btn btn-primary" id="addData">Add</button>
+        <div class="row mt-3">
+            <div class="col-6 mx-auto">
+                <div class=" p-5">
+                    <!-- <h5 class="text-center text-white">Todo</h5> -->
+                    <div class="form-control d-flex gap-3 justify-content-center">
+                        <input type="text" class="form-control" id="addTodo">
+                        <button class="btn btn-danger" type="submit" id="addData">Add</button>
+                    </div>
+                </div>
+                <div class="mx-auto">
+                    <ol class="task" id="allTask"></ol>
                 </div>
             </div>
         </div>
@@ -41,8 +52,23 @@
 
         let todoData = document.getElementById('addTodo');
         let taskBtn = document.getElementById('addData');
+        let taskBox = document.getElementById('allTask');
+
+        function clear() {
+            todoData.value = " ";
+        }
         taskBtn.addEventListener('click', () => {
-            console.log(todoData.value)
+            if (todoData.value !== " ") {
+                let li = document.createElement('LI');
+                taskBox.appendChild(li);
+                li.innerHTML = todoData.value;
+                console.log(todoData.value);
+                clear()
+            } 
+            // else {
+            //     document.write('Empty data')
+
+            // }
         })
 
     </script>
