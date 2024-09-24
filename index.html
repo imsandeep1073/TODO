@@ -10,10 +10,23 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <style>
     .task li {
         color: white;
+        background: #575757;
+        border: 1px solid #7777776b;
+        padding: 7px 14px;
+        font-size: 20px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    span {
+        cursor: pointer;
     }
 </style>
 
@@ -25,12 +38,12 @@
                 <div class=" p-5">
                     <!-- <h5 class="text-center text-white">Todo</h5> -->
                     <div class="form-control d-flex gap-3 justify-content-center">
-                        <input type="text" class="form-control" id="addTodo">
+                        <input type="text" class="form-control shadow-none" id="addTodo">
                         <button class="btn btn-danger" type="submit" id="addData">Add</button>
                     </div>
                 </div>
                 <div class="mx-auto">
-                    <ol class="task" id="allTask"></ol>
+                    <ol class="task p-0" id="allTask"></ol>
                 </div>
             </div>
         </div>
@@ -58,18 +71,29 @@
             todoData.value = " ";
         }
         taskBtn.addEventListener('click', () => {
+            let li = document.createElement('LI');
+            let span = document.createElement('SPAN')
             if (todoData.value !== " ") {
-                let li = document.createElement('LI');
+
                 taskBox.appendChild(li);
                 li.innerHTML = todoData.value;
+                li.setAttribute('class', 'myListitem')
+                li.appendChild(span).innerHTML = 'X';
                 console.log(todoData.value);
                 clear()
-            } 
-            // else {
-            //     document.write('Empty data')
+            }
+            else {
+                todoData.value = "Please Enter Data"
 
-            // }
+            }
+
+            span.addEventListener('click', () => {
+                li.classList.add('d-none')
+               
+            })
         })
+
+
 
     </script>
 </body>
