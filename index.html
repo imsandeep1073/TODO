@@ -28,6 +28,10 @@
     span {
         cursor: pointer;
     }
+
+    .doneTask {
+        text-decoration: line-through;
+    }
 </style>
 
 <body class="bg-dark">
@@ -43,10 +47,20 @@
                     </div>
                 </div>
                 <div class="mx-auto"></div>
-                    <ol class="task p-0" id="allTask"></ol>
-                </div>
+                <ol class="task p-0" id="allTask">
+                    <li class="d-flex justify-content-between">
+                        <div>
+                            <input type="checkbox" name="" id="">
+                            <span>hii</span>
+                        </div>
+                        <div>
+                            <span>X</span>
+                        </div>
+                    </li>
+                </ol>
             </div>
         </div>
+    </div>
     </div>
 
 
@@ -67,31 +81,65 @@
         let taskBtn = document.getElementById('addData');
         let taskBox = document.getElementById('allTask');
 
+
         function clear() {
             todoData.value = " ";
         }
-        taskBtn.addEventListener('click', () => {
-            let li = document.createElement('LI');
-            let span = document.createElement('SPAN')
-            if (todoData.value !== " ") {
 
-                taskBox.appendChild(li);
-                li.innerHTML = todoData.value;
-                li.setAttribute('class', 'myListitem')
-                li.appendChild(span).innerHTML = 'X';
-                console.log(todoData.value);
-                clear()
-            }
-            else {
-                todoData.value = "Please Enter Data"
+        if (todoData.value !== " ") {
+            taskBtn.addEventListener('click', () => {
+                let li = document.createElement('LI');
+                let checkbox = document.createElement('INPUT');
+                let span = document.createElement('SPAN');
+                if (todoData.value !== " ") {
+                    checkbox.setAttribute('type', 'checkbox');
+                    checkbox.setAttribute('class', 'myCheckbox');
+                    taskBox.appendChild(li);
+                    li.appendChild(span).innerHTML = todoData.value;
+                    li.setAttribute('id', 'myListitem');
+                    li.appendChild(checkbox);
+                    // checkbox.addEventListener('checked',()=>{
+                    //     span.classList.add('doneTask')
+                    // })
+                    let doneTask = checkbox.checked;
+                    // console.log(doneTask)
+                    // if (doneTask !== checked) {
+                    //     span.classList.add('doneTask')
+                    // }
+                    li.addEventListener('click', () => {
+                        checkbox = document.querySelector('input[type="checkbox"]');
+                        checkbox.checked = !checkbox.checked;
+                        if (checkbox.checked) {
+                            console.log('hii')
+                            span.classList.add('doneTask')
+                        } if (!checkbox.checked) {
+                            span.classList.remove('doneTask')
 
-            }
+                        }
+                    })
 
-            span.addEventListener('click', () => {
-                li.classList.add('d-none')
-               
+
+
+
+                    console.log(todoData.value);
+                    clear()
+
+                    // li.appendChild(span).innerHTML = 'X';
+                }
+                // else {
+                //     alert("Please Enter Data")
+
+                // }
+
+                // span.addEventListener('click', () => {
+                //     li.classList.add('d-none')
+                // })
+
+
             })
-        })
+        } else {
+            alert("Please Enter Data")
+        }
 
 
 
