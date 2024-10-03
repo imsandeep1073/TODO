@@ -68,13 +68,13 @@
         let taskBox = document.getElementById('allTask');
 
         function clear() {
-            todoData.value = " ";
+            todoData.value = "";
         }
         taskBtn.addEventListener('click', () => {
             let li = document.createElement('LI');
             let span = document.createElement('SPAN')
-            if (todoData.value !== " ") {
-
+            let result = todoData.value.trim();
+            if (result !== "") {                
                 taskBox.appendChild(li);
                 li.innerHTML = todoData.value;
                 li.setAttribute('class', 'myListitem')
@@ -83,7 +83,8 @@
                 clear()
             }
             else {
-                todoData.value = "Please Enter Data"
+              alert("enter Data")
+                // todoData.value = "Please Enter Data"
 
             }
 
